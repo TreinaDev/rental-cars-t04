@@ -1,0 +1,6 @@
+<h1>Filiais</h1>
+
+<% @subsidiaries.each do |subsidiary| %>
+  <h3><%= subsidiary.name %></h3>
+  <p><%= subsidiary.address %></p>
+<% end %>
