@@ -1,0 +1,18 @@
+<h1>Registro de filial</h1>
+
+<% if @subsidiary.errors.any? %>
+  <p>Verifique os erros apresentados abaixo:</p>
+  <% @subsidiary.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_with model: @subsidiary, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :cnpj %>
+  <%= f.text_field :cnpj %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.submit 'Enviar' %>
+<% end %>
