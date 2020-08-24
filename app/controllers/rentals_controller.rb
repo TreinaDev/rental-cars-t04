@@ -2,6 +2,7 @@ class RentalsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # @rentals = Rental.all
   end
 
   def show
@@ -19,6 +20,11 @@ class RentalsController < ApplicationController
     @rental.user = current_user
     @rental.save!
     redirect_to @rental, notice: 'Agendamento realizado com sucesso!'
+  end
+
+  def search
+    @rentals = Rental.where(token: params[:q])
+    render :index
   end
 
   private
