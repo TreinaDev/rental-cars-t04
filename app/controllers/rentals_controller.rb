@@ -23,7 +23,7 @@ class RentalsController < ApplicationController
   end
 
   def search
-    @rentals = Rental.where('token LIKE ?', "%#{params[:q].upcase}%")
+    @rentals = Rental.where('token LIKE ?', "%#{params[:q]}%")
     render :index
   end
 
