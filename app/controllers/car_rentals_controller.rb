@@ -3,7 +3,7 @@ class CarRentalsController < ApplicationController
     @rental = Rental.find(params[:rental_id])
     #@available_cars = Car.where(car_model: @rental.car_category.car_models)
     
-    @available_cars = @rental.car_category.cars # usando has_many through
+    @available_cars = @rental.car_category.cars.available # usando has_many through
 
     @car_rental = CarRental.new
   end
@@ -12,6 +12,7 @@ class CarRentalsController < ApplicationController
     @rental = Rental.find(params[:rental_id])
     @car_rental = @rental.build_car_rental(car_rental_params)
     @car_rental.save
+    @car_rental.car.rented!
     redirect_to @rental, notice: 'Locação iniciada com sucesso'
   end
 

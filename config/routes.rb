@@ -6,11 +6,16 @@ Rails.application.routes.draw do
   resources :subsidiaries, only: [:index, :show, :new, :create]
   resources :car_models, only: [:index, :show, :new, :create]
   resources :rentals, only: [:index, :show, :new, :create] do
-    resources :car_rentals, only: [ :new, :create] # nested resources
+    resources :car_rentals, only: [:new, :create] 
     get 'search', on: :collection
   end
 
-  resources :car_rentals, only: [ :show ] do
+  resources :car_rentals, only: [] do
     post 'finish', on: :member
+  end
+
+  resources :cars, only: [:show] do
+    post 'maintanance', on: :member
+    post 'available', on: :member
   end
 end

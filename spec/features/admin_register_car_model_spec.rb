@@ -14,6 +14,7 @@ feature 'Admin register car model' do
     fill_in 'Motorização', with: '1.0'
     select 'Top', from: 'Categoria de carro'
     fill_in 'Tipo de combustível', with: 'Flex'
+    attach_file 'Foto', Rails.root.join('spec/support/ka_2019.jpg')
     click_on 'Enviar'
 
     expect(page).to have_content('Ka')
@@ -22,6 +23,7 @@ feature 'Admin register car model' do
     expect(page).to have_content('1.0')
     expect(page).to have_content('Top')
     expect(page).to have_content('Flex')
+    expect(page).to have_css('img[src*="ka_2019.jpg"]')
   end
 
   scenario 'must fill in all fields' do
