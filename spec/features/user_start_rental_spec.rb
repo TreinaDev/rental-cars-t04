@@ -2,7 +2,6 @@ include ActiveSupport::Testing::TimeHelpers
 
 feature 'User start rental' do
   scenario 'view only category cars' do
-
     user = User.create!(email: 'user@test.com', password: '12345678',
                         name: 'Sicrano Fulano')
     client = Client.create!(name: 'Fulano Sicrano', email: 'client@test.com',
@@ -26,10 +25,10 @@ feature 'User start rental' do
                                 fuel_type: 'Elétrico')
 
     car = Car.create!(license_plate: 'ABC123', color: 'Prata',
-                      car_model: model_ka, mileage: 0)
+                      car_model: model_ka, mileage: 0, status: :available)
 
     car_fusion = Car.create!(license_plate: 'XYZ9876', color: 'Azul',
-                      car_model: model_fusion, mileage: 0)
+                      car_model: model_fusion, mileage: 0, status: :available)
 
     rental = Rental.create!(start_date: Date.current, end_date: 1.day.from_now,
                             client: client, car_category: car_category_a,
@@ -64,8 +63,9 @@ feature 'User start rental' do
     car_model = CarModel.create!(name: 'Ka', year: 2019, manufacturer: 'Ford', 
                                 motorization: '1.0', car_category: car_category,
                                 fuel_type: 'Flex')
+
     car = Car.create!(license_plate: 'ABC123', color: 'Prata',
-                      car_model: car_model, mileage: 0)
+                      car_model: car_model, mileage: 0, status: :available)
 
     rental = Rental.create!(start_date: Date.current, end_date: 1.day.from_now,
                             client: client, car_category: car_category,
@@ -103,6 +103,13 @@ feature 'User start rental' do
     expect(page).to have_content('RJ200100-10')
     expect(page).not_to have_link('Iniciar locação')
     expect(page).to have_content("01 de outubro de 2020, 12:30:45")
+
+    expect(car).to be_rented
+
   end
 
+  scenario 'view only available cars' do
+    # todo: criar um teste onde existem 2 carros da mesma categoria mas 1 já esta rented
+    # somente o carro available pode aparecer no select ;)
+  end
 end

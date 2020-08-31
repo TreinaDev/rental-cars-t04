@@ -4,7 +4,6 @@ class Rental < ApplicationRecord
   belongs_to :user
   has_one :car_rental
 
-
   before_create :generate_token
 
   def total

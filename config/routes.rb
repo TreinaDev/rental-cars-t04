@@ -9,4 +9,8 @@ Rails.application.routes.draw do
     resources :car_rentals, only: [ :new, :create] # nested resources
     get 'search', on: :collection
   end
+
+  resources :car_rentals, only: [ :show ] do
+    post 'finish', on: :member
+  end
 end
