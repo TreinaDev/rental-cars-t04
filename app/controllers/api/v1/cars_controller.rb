@@ -1,5 +1,4 @@
 class Api::V1::CarsController < Api::V1::ApiController
-
   def index
     render json: Car.available
   end
@@ -13,7 +12,6 @@ class Api::V1::CarsController < Api::V1::ApiController
     @car = Car.new(car_params)
     @car.save!
     render status: :created, json: @car
-
   rescue ActionController::ParameterMissing
     render status: :precondition_failed, json: 'Parâmetros inválidos'
   end
