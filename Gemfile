@@ -7,6 +7,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 
 gem 'cpf_cnpj'
 gem 'devise'
+gem 'friendly_id', '~> 5.4.0'
 gem 'jbuilder', '~> 2.7'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'

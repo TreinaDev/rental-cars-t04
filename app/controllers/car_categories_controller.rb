@@ -6,7 +6,7 @@ class CarCategoriesController < ApplicationController
   end
 
   def show
-    @car_category = CarCategory.find(params[:id]) # params é um HASH
+    @car_category = CarCategory.friendly.find(params[:id])
   end
 
   def new
@@ -23,7 +23,7 @@ class CarCategoriesController < ApplicationController
   end
 
   def edit
-    @car_category = CarCategory.find(params[:id])
+    @car_category = CarCategory.friendly.find(params[:id])
   end
 
   def update
@@ -36,7 +36,7 @@ class CarCategoriesController < ApplicationController
   end
   
   def destroy
-    @car_category = CarCategory.find(params[:id])
+    @car_category = CarCategory.friendly.find(params[:id])
     @car_category.destroy
     redirect_to car_categories_path
   end
